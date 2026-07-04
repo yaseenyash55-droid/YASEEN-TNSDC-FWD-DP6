@@ -407,6 +407,25 @@ const initCustomCursor = () => {
     });
 };
 
+// Click handler for certificate cards
+const initCertificateCardsClick = () => {
+    const cards = document.querySelectorAll('.cert-card');
+    cards.forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+            // If the user clicked on a link inside the card, let the link handle it
+            if (e.target.tagName.toLowerCase() === 'a' || e.target.closest('a')) {
+                return;
+            }
+            // Find the primary view link in the card and click it
+            const viewBtn = card.querySelector('.cert-btn');
+            if (viewBtn) {
+                window.open(viewBtn.href, '_blank', 'noopener,noreferrer');
+            }
+        });
+    });
+};
+
 /* ==========================================================================
    INITIALIZATION
    ========================================================================== */
@@ -419,4 +438,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initContactForm();
     initCustomCursor();
+    initCertificateCardsClick();
 });
