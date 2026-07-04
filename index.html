@@ -1,195 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Yaseen A | 3D Portfolio</title>
+    <meta name="description" content="Explore the immersive 3D portfolio of Mohammed Yaseen A - Creative Developer and 3D UX Designer specializing in high-fidelity interactive web experiences.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="dashboard-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="profile.jpeg" alt="Profile Picture" class="profile-pic" />
-        <h2><i class="fas fa-user-circle"></i>ComicCast</h2>
-        <button id="theme-toggle" title="Toggle light/dark mode">
-          <span id="theme-toggle-icon">🌙</span>
-        </button>
-      </div>
-    <nav class="sidebar-nav" style="position: absolute; top: 300px; z-index: 2;">
-      <a href="#dashboard"><i class="fas fa-th-large"></i> Dashboard</a>
-      <a href="#about"><i class="fas fa-user"></i> About</a>
-      <a href="#certificates"><i class="fas fa-certificate"></i> Certificates</a>
-      <a href="#projects"><i class="fas fa-briefcase"></i> Projects</a>
-      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-    </nav>
-      <div class="sidebar-footer">
-        <a href="Resume_Template_Updated.pdf" class="btn resume" download>
-          <i class="fas fa-download"></i> Resume
-        </a>
-      </div>
-    </aside>
+    <!-- Custom Interactive Cursor -->
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-outline" id="cursor-outline"></div>
+
+    <!-- Three.js Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Glowing Background Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Header & Navigation -->
+    <header id="main-header">
+        <nav class="navbar container">
+            <div class="logo">
+                <a href="#home">M<span>YA</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <main class="main-content">
-      <!-- Home Section -->
-      <section id="home" class="home-section fade-in">
-        <div class="home-profile">
-          <img src="profile.jpeg" alt="Profile Picture" class="profile-pic-large" />
-          <h1 class="home-name">Mohammed Yaseen A</h1>
-        </div>
-      </section>
-      <!-- Dashboard Overview -->
-      <section id="dashboard" class="dashboard-section fade-in">
-        <div class="dashboard-welcome">
-          <h1>Welcome, <span class="highlight">Mohammed Yaseen A</span>!</h1>
-          <p class="typing"></p>
-        </div>
-        <div class="dashboard-cards">
-          <div class="dashboard-card selectable" data-section="projects">
-            <h3>Projects</h3>
-            <p>2 completed</p>
-          </div>
-          <div class="dashboard-card selectable" data-section="skills">
-            <h3>Skills</h3>
-            <p>HTML, CSS, JS, UI/UX</p>
-          </div>
-          <div class="dashboard-card selectable" data-section="certificates">
-            <h3>Certificates</h3>
-            <p>View my certificates</p>
-          </div>
-        </div>
-      </section>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section section-padding">
+            <div class="container hero-grid">
+                <div class="hero-text" data-reveal="left">
+                    <span class="greeting">Welcome to my space</span>
+                    <h1 class="main-title">Hi, I'm <br><span class="highlight">Mohammed Yaseen A</span></h1>
+                    <h2 class="sub-title">I design & build <span id="typing-text"></span><span class="cursor">|</span></h2>
+                    <p class="hero-desc">
+                        A passionate Creative Developer focused on crafting immersive 3D visual experiences on the web. I bridge the gap between high-end design and solid frontend engineering.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="#projects" class="btn btn-primary">Explore Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-reveal="right">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d" id="hero-card">
+                            <div class="card-glow"></div>
+                            <div class="card-border"></div>
+                            <div class="card-content">
+                                <img src="assets/images/profile-front.jpg" alt="Mohammed Yaseen A Front Portrait" class="profile-image">
+                                <div class="card-info">
+                                    <h3>Mohammed Yaseen A</h3>
+                                    <p>Interactive Experience Designer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll Down</span>
+            </div>
+        </section>
 
-      <!-- About -->
-      <section id="about" class="about-section fade-in">
-        <h2>About Me</h2>
-        <img src="resume-preview.jpg" alt="Resume Preview" style="max-width:100%;border-radius:12px;margin:20px 0;">
-        <p>
-          As a skilled content creator and editor, I bring humor and joy to my audience through my YouTube channel "Comic Cast". With a keen eye for detail and a passion for storytelling, I craft engaging comedic content that resonates with viewers.
-        </p>
-      </section>
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal="top">About <span>Me</span></h2>
+                <div class="about-grid">
+                    <div class="about-visual" data-reveal="left">
+                        <div class="frame-3d">
+                            <img src="assets/images/profile-side.jpg" alt="Mohammed Yaseen A Profile Angle" class="profile-side-image">
+                            <div class="frame-backing"></div>
+                            <div class="frame-border"></div>
+                        </div>
+                    </div>
+                    <div class="about-text" data-reveal="right">
+                        <h3>Creating with Passion & Purpose</h3>
+                        <p>
+                            I am a developer who believes web design shouldn't be flat. By incorporating depth, lighting, and interactivity, websites can transform from pages into virtual experiences.
+                        </p>
+                        <p>
+                            My approach combines performance optimization, accessibility, and visual wow-factor. Using technologies like Three.js and custom shader development, I bring ideas to life inside the browser. Let's create something extraordinary together!
+                        </p>
+                        <div class="education-block">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div>
+                                <h4>B.Sc. in Computer Science</h4>
+                                <p>Government Arts & Science (CO-Education) College, Avinashi (Ongoing)</p>
+                            </div>
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-box">
+                                <span class="stat-num">3D</span>
+                                <span class="stat-label">Web Focus</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">UX</span>
+                                <span class="stat-label">Centric</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">Fast</span>
+                                <span class="stat-label">Performance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <!-- Education -->
-      <section id="education" class="education-section fade-in">
-        <h2>Education</h2>
-        <ul class="education-list">
-          <li>
-            <strong>B.Sc. Computer Science</strong><br>
-            government arts and science College (co-ed)-Avinashi, 2024 – 2027
-          </li>
-          <li>
-            <strong>HSLC (Bio-Mathematics)</strong><br>
-            Mahajana Higher Secondary School, 2021 – 2023
-          </li>
-          <li>
-            <strong>SSLC</strong><br>
-            Rose garden High School, 2008 – 2020
-          </li>
-        </ul>
-      </section>
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal="top">Technical <span>Arsenal</span></h2>
+                <p class="section-subtitle text-center" data-reveal="top">The tools and frameworks I use to carve digital realities.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-card" data-reveal="bottom">
+                        <div class="skill-icon">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <h3>Frontend Logic</h3>
+                        <p>Javascript (ES6+), React.js, Next.js, and TypeScript for building reactive, scalable single-page architectures.</p>
+                        <div class="skill-level"><span style="width: 90%;"></span></div>
+                    </div>
+                    
+                    <div class="skill-card" data-reveal="bottom" data-delay="100">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <h3>3D & Graphics</h3>
+                        <p>Three.js, WebGL, custom GLSL shaders, Blender, and responsive animation systems for interactive elements.</p>
+                        <div class="skill-level"><span style="width: 85%;"></span></div>
+                    </div>
 
-      <!-- Projects -->
-      <section id="projects" class="projects-section fade-in">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <div class="project-card">
-            <img src="https://picsum.photos/400/300?random=1" alt="Creative Portfolio Screenshot" />
-            <div class="project-info">
-              <h3>Creative Portfolio</h3>
-              <p>Responsive website built with HTML, CSS, JS showcasing modern design.</p>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="https://picsum.photos/400/300?random=2" alt="Web App Screenshot" />
-            <div class="project-info">
-              <h3>Web App</h3>
-              <p>Full-stack app with authentication, database, and cloud hosting.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                    <div class="skill-card" data-reveal="bottom" data-delay="200">
+                        <div class="skill-icon">
+                            <i class="fa-brands fa-css3-alt"></i>
+                        </div>
+                        <h3>Creative Styling</h3>
+                        <p>Advanced Vanilla CSS3, Grid, Flexbox, layout systems, glassmorphic UI cards, transitions, and keyframe animations.</p>
+                        <div class="skill-level"><span style="width: 95%;"></span></div>
+                    </div>
 
-      <!-- Certificates -->
-      <section id="certificates" class="certificates-section fade-in">
-        <h2>Certificates</h2>
-        <div class="certificate-grid">
-          <div class="certificate-card">
-            <embed src="IBMDesign20250812-31-vtzopd.pdf" type="application/pdf" width="100%" height="200px" style="margin-top:10px; border-radius:8px;" />
-            <div class="certificate-info">
-              <h3>Web Development Fundamentals</h3>
-              <p>Udemy, 2023</p>
-            </div>
-          </div>
-          <div class="certificate-card">
-            <embed src="Completion Certificate _ SkillsBuild.pdf" type="application/pdf" width="100%" height="200px" style="margin-top:10px; border-radius:8px;" />
-            <div class="certificate-info">
-              <h3>SkillsBuild Completion Certificate</h3>
-              <p>IBM SkillsBuild, 2025</p>
-            </div>
-          </div>
-          <div class="certificate-card">
-            <embed src="mohammed-yaseen-b0e530d6-fb60-4997-afcf-2ccea2639a3c-certificate_copy.pdf" type="application/pdf" width="100%" height="200px" style="margin-top:10px; border-radius:8px;" />
-            <div class="certificate-info">
-              <h3>MongoDB Certificate</h3>
-              <p>Provider, Year</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                    <div class="skill-card" data-reveal="bottom" data-delay="300">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <h3>User Experience</h3>
+                        <p>UI design, information hierarchy, wireframing, motion-design integration, and cross-browser testing.</p>
+                        <div class="skill-level"><span style="width: 80%;"></span></div>
+                    </div>
 
-      <!-- Skills -->
-      <section id="skills" class="skills-section fade-in">
-        <h2>Skills</h2>
-        <div class="skills-bars">
-          <div class="skill-bar">
-            <span class="skill-title">HTML</span>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 90%"></div>
-            </div>
-            <span class="skill-percent">90%</span>
-          </div>
-          <div class="skill-bar">
-            <span class="skill-title">CSS</span>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 85%"></div>
-            </div>
-            <span class="skill-percent">85%</span>
-          </div>
-          <div class="skill-bar">
-            <span class="skill-title">JavaScript</span>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 80%"></div>
-            </div>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar">
-            <span class="skill-title">UI/UX</span>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 75%"></div>
-            </div>
-            <span class="skill-percent">75%</span>
-          </div>
-        </div>
-      </section>
+                    <div class="skill-card" data-reveal="bottom" data-delay="100">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3>Software Dev</h3>
+                        <p>Core programming in C, C++, and Java for robust backend logic, algorithms, object-oriented concepts, and problem solving.</p>
+                        <div class="skill-level"><span style="width: 85%;"></span></div>
+                    </div>
 
-      <!-- Contact -->
-      <section id="contact" class="contact-section fade-in">
-        <h2>Contact</h2>
-        <p><strong>Phone:</strong> +91 9344665042</p>
-        <p><strong>Email:</strong> <a href="mailto:yaseenyash55@gmail.com">yaseenyash55@gmail.com</a></p>
-        <div class="social-links">
-          <a href="https://github.com/MohammedYaseen55" target="_blank" rel="noopener"><i class="fab fa-github"></i>GitHub</a>
-        </div>
-      </section>
+                    <div class="skill-card" data-reveal="bottom" data-delay="200">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3>Media Production</h3>
+                        <p>Expert video editing, creative meme design, and digital content creation for social platforms and YouTube channels.</p>
+                        <div class="skill-level"><span style="width: 90%;"></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <footer>
-        <p>&copy; 2025 ComicCast. Crafted with ❤️</p>
-      </footer>
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal="top">Featured <span>Creations</span></h2>
+                <p class="section-subtitle text-center" data-reveal="top">A curation of interactive web environments and premium concepts.</p>
+
+                <div class="projects-grid">
+                    <div class="project-card" data-reveal="bottom">
+                        <div class="project-img-wrapper">
+                            <div class="project-overlay">
+                                <h3>Comic Cast Channel</h3>
+                                <p>Created and managed a YouTube channel 'Comic Cast' with original video content and high-quality creative memes.</p>
+                                <a href="#" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore Channel</a>
+                            </div>
+                            <div class="project-placeholder p-1">
+                                <div class="waves-grid">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-reveal="bottom" data-delay="150">
+                        <div class="project-img-wrapper">
+                            <div class="project-overlay">
+                                <h3>Digital Portfolio</h3>
+                                <p>An interactive, responsive 3D dashboard displaying skills, academic background, and credentials. Built with HTML, CSS, JavaScript, and Three.js.</p>
+                                <a href="https://github.com/yaseenyash55-droid/YASEEN-TNSDC-FWD-DP6.git" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Github Repo</a>
+                            </div>
+                            <div class="project-placeholder p-2">
+                                <div class="cube-grid">
+                                    <div class="grid-cube"></div>
+                                    <div class="grid-cube"></div>
+                                    <div class="grid-cube"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-reveal="bottom" data-delay="300">
+                        <div class="project-img-wrapper">
+                            <div class="project-overlay">
+                                <h3>Aether3D Configurator</h3>
+                                <p>An interactive, realistic 3D product customizer built on WebGL, utilizing dynamic lighting and real-time textures.</p>
+                                <a href="#" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            </div>
+                            <div class="project-placeholder p-3">
+                                <div class="orbit-visual"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="certificates-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal="top">Earned <span>Credentials</span></h2>
+                <p class="section-subtitle text-center" data-reveal="top">Professional certifications and credentials verifying my web & tech expertise.</p>
+
+                <div class="certificates-grid">
+                    <div class="cert-card" data-reveal="bottom">
+                        <div class="cert-glow"></div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <div class="cert-badge">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+                                <span class="cert-date">Feb 2026</span>
+                            </div>
+                            <h3>Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+                            <p class="cert-issuer">Oracle University</p>
+                            <div class="cert-meta">
+                                <span class="cert-id"><i class="fa-solid fa-hashtag"></i> ID: 103419172OCI25AICFA</span>
+                                <a href="#" class="cert-btn"><i class="fa-solid fa-shield-halved"></i> Verify Credential</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-reveal="bottom" data-delay="100">
+                        <div class="cert-glow"></div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <div class="cert-badge">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <span class="cert-date">Jul 2025</span>
+                            </div>
+                            <h3>Edunet - Front End Web Development</h3>
+                            <p class="cert-issuer">IBM SkillsBuild & Edunet</p>
+                            <div class="cert-meta">
+                                <span class="cert-id"><i class="fa-solid fa-hashtag"></i> ID: PLAN-741582ED6C44</span>
+                                <a href="#" class="cert-btn"><i class="fa-solid fa-shield-halved"></i> Verify Credential</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-reveal="bottom" data-delay="200">
+                        <div class="cert-glow"></div>
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <div class="cert-badge">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <span class="cert-date">Jul 2025</span>
+                            </div>
+                            <h3>Web Development Fundamentals</h3>
+                            <p class="cert-issuer">IBM SkillsBuild</p>
+                            <div class="cert-meta">
+                                <span class="cert-id"><i class="fa-solid fa-hashtag"></i> ID: PLAN-8749C02A78EC</span>
+                                <a href="https://www.credly.com/badges/ae5699c7-1ec0-42ab-ae7b-bdd0beb41707" target="_blank" rel="noopener noreferrer" class="cert-btn"><i class="fa-solid fa-shield-halved"></i> Verify on Credly</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal="top">Get In <span>Touch</span></h2>
+                <p class="section-subtitle text-center" data-reveal="top">Have a project or want to collaborate? Reach out below.</p>
+
+                <div class="contact-wrapper" data-reveal="bottom">
+                    <div class="contact-info-panel">
+                        <h3>Let's build the future together.</h3>
+                        <p>Feel free to ping me via email, fill out the form, or follow my professional networks.</p>
+                        
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <span><a href="mailto:yaseenyash55@gmail.com">yaseenyash55@gmail.com</a></span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <span><a href="tel:+919344665042">+91 9344665042</a></span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>India</span>
+                            </li>
+                        </ul>
+
+                        <div class="social-links">
+                            <a href="https://github.com/yaseenyash55-droid" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                            <span class="bar"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                            <span class="bar"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" required placeholder=" " rows="5"></textarea>
+                            <label for="message">Your Message</label>
+                            <span class="bar"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
-  </div>
-  <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Mohammed Yaseen A. All rights reserved.</p>
+            <p>Designed with passion & 3D innovation.</p>
+        </div>
+    </footer>
+
+    <!-- Three.js Core Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Main Script -->
+    <script src="app.js"></script>
 </body>
 </html>
