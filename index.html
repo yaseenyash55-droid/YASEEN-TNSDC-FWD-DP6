@@ -60,10 +60,22 @@
                     <p class="hero-desc">
                         A passionate Creative Developer focused on crafting immersive 3D visual experiences on the web. I bridge the gap between high-end design and solid frontend engineering.
                     </p>
-                    <div class="hero-ctas" style="display: flex; flex-wrap: wrap; gap: 12px;">
+                    <div class="hero-ctas" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
                         <a href="#projects" class="btn btn-primary">Explore Work</a>
-                        <a href="Resume_Template_Updated.pdf" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-eye" style="margin-right: 6px;"></i> View CV</a>
-                        <a href="Resume_Template_Updated.pdf" download class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 6px;"></i> Download CV</a>
+                        <div class="cta-dropdown">
+                            <button class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-user-tie"></i> Resume (Photo) <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:2px; opacity:0.8;"></i></button>
+                            <div class="dropdown-menu">
+                                <a href="assets/resumes/resume-with-photo.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-eye"></i> View PDF</a>
+                                <a href="assets/resumes/resume-with-photo.pdf" download><i class="fa-solid fa-download"></i> Download</a>
+                            </div>
+                        </div>
+                        <div class="cta-dropdown">
+                            <button class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-file-invoice"></i> Resume (Plain) <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:2px; opacity:0.8;"></i></button>
+                            <div class="dropdown-menu">
+                                <a href="assets/resumes/resume-no-photo.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-eye"></i> View PDF</a>
+                                <a href="assets/resumes/resume-no-photo.pdf" download><i class="fa-solid fa-download"></i> Download</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-visual" data-reveal="right">
@@ -131,12 +143,29 @@
                                 <span class="stat-label">Performance</span>
                             </div>
                         </div>
-                        <div class="resume-card-wrapper" style="margin-top: 30px; padding: 24px; border-radius: 12px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 12px; border-left: 3px solid var(--accent-red);">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--text-primary);"><i class="fa-solid fa-file-invoice" style="color: var(--accent-red);"></i> Professional Resume</h4>
-                            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">Access my updated CV detailing my full-stack web development expertise, key projects, coursework, and certifications.</p>
-                            <div class="resume-links" style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
-                                <a href="Resume_Template_Updated.pdf" target="_blank" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-solid fa-eye"></i> View CV</a>
-                                <a href="Resume_Template_Updated.pdf" download class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem; height: auto; background: var(--accent-red); color: #fff; text-decoration: none; border-radius: 8px; border: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer;"><i class="fa-solid fa-download"></i> Download CV</a>
+                        <div class="resumes-section-wrapper" style="margin-top: 30px; display: flex; flex-direction: column; gap: 14px;">
+                            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--text-primary);"><i class="fa-solid fa-file-contract" style="color: var(--accent-red);"></i> Professional Resumes</h4>
+                            
+                            <div class="resumes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                                <!-- Resume With Photo -->
+                                <div class="resume-subcard" style="padding: 20px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 8px; border-left: 3px solid var(--accent-red);">
+                                    <h5 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--text-primary); margin: 0;"><i class="fa-solid fa-user-tie" style="color: var(--accent-red);"></i> CV (With Photo)</h5>
+                                    <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); margin: 0;">Designed for creative agency review and standard portfolio profiling.</p>
+                                    <div style="display: flex; gap: 8px; margin-top: auto; padding-top: 10px;">
+                                        <a href="assets/resumes/resume-with-photo.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> View</a>
+                                        <a href="assets/resumes/resume-with-photo.pdf" download class="btn btn-primary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; background: var(--accent-red); color: #fff; text-decoration: none; border-radius: 6px; border: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; flex: 1; justify-content: center;"><i class="fa-solid fa-download"></i> Get</a>
+                                    </div>
+                                </div>
+
+                                <!-- Resume Without Photo -->
+                                <div class="resume-subcard" style="padding: 20px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 8px; border-left: 3px solid var(--text-secondary);">
+                                    <h5 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--text-primary); margin: 0;"><i class="fa-solid fa-file-invoice" style="color: var(--text-secondary);"></i> CV (No Photo)</h5>
+                                    <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); margin: 0;">Designed for ATS scan compatibility and anonymous filtering systems.</p>
+                                    <div style="display: flex; gap: 8px; margin-top: auto; padding-top: 10px;">
+                                        <a href="assets/resumes/resume-no-photo.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> View</a>
+                                        <a href="assets/resumes/resume-no-photo.pdf" download class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-download"></i> Get</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
