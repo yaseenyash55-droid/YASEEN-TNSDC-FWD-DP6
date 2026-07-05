@@ -1439,7 +1439,8 @@ footer {
 }
 
 .cta-dropdown:hover .dropdown-menu,
-.cta-dropdown:focus-within .dropdown-menu {
+.cta-dropdown:focus-within .dropdown-menu,
+.cta-dropdown.active .dropdown-menu {
     display: block;
 }
 

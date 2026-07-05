@@ -426,6 +426,36 @@ const initCertificateCardsClick = () => {
     });
 };
 
+// Dropdown menu handler for mobile click-toggles
+const initDropdowns = () => {
+    const dropdowns = document.querySelectorAll('.cta-dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        if (trigger) {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle active state on clicked dropdown
+                const isActive = dropdown.classList.contains('active');
+                
+                // Close other dropdowns
+                dropdowns.forEach(other => other.classList.remove('active'));
+                
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                }
+            });
+        }
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    });
+};
+
 /* ==========================================================================
    INITIALIZATION
    ========================================================================== */
@@ -439,4 +469,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initCustomCursor();
     initCertificateCardsClick();
+    initDropdowns();
 });
