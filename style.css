@@ -1400,6 +1400,44 @@ footer {
     }
 }
 
+/* Responsive adjustments for mobile screens (under 480px) */
+@media (max-width: 480px) {
+    .hero-ctas {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100%;
+        gap: 10px !important;
+    }
+    
+    .hero-ctas .btn, 
+    .hero-ctas .cta-dropdown {
+        width: 100%;
+    }
+    
+    .hero-ctas .dropdown-trigger {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .dropdown-menu {
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        min-width: 220px !important;
+        text-align: center;
+        animation: dropdownFadeInMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    }
+    
+    .dropdown-menu a {
+        justify-content: center;
+    }
+    
+    @keyframes dropdownFadeInMobile {
+        from { opacity: 0; transform: translate(-50%, 6px); }
+        to { opacity: 1; transform: translate(-50%, 0); }
+    }
+}
+
 /* ==========================================================================
    DROPDOWN MENUS (RESUME DOWNLOAD & VIEW SELECTORS)
    ========================================================================== */
