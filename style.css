@@ -1220,6 +1220,10 @@ footer {
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================== */
 @media (max-width: 992px) {
+    .scroll-indicator {
+        display: none;
+    }
+    
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 60px;
