@@ -214,22 +214,33 @@ const initTypingAnimation = () => {
 };
 
 /* ==========================================================================
-   SCROLL REVEAL (INTERSECTION OBSERVER)
+   SCROLL REVEAL (INTERSECTION OBSERVER WITH STAGGER)
    ========================================================================== */
 const initScrollReveal = () => {
+    // Auto-stagger grid items if data-delay isn't explicitly set
+    const gridContainers = document.querySelectorAll('.skills-grid, .projects-grid, .certs-grid, .contact-details');
+    gridContainers.forEach(container => {
+        const children = container.children;
+        Array.from(children).forEach((child, index) => {
+            if (child.hasAttribute('data-reveal') && !child.hasAttribute('data-delay')) {
+                child.setAttribute('data-delay', (index % 4) * 80); // 80ms stagger step
+            }
+        });
+    });
+
     const revealedElements = document.querySelectorAll('[data-reveal]');
     
     const observerOptions = {
         root: null,
-        threshold: 0.15, // element is visible by 15%
-        rootMargin: '0px'
+        threshold: 0.12, // element is visible by 12%
+        rootMargin: '0px 0px -40px 0px'
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
-                const delay = element.getAttribute('data-delay') || 0;
+                const delay = parseInt(element.getAttribute('data-delay'), 10) || 0;
                 
                 setTimeout(() => {
                     element.classList.add('revealed');
