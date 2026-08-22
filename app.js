@@ -457,6 +457,55 @@ const initDropdowns = () => {
 };
 
 /* ==========================================================================
+   SPLINE 3D INTEGRATION & TOGGLE CONTROLLER
+   ========================================================================== */
+const initSplineIntegration = () => {
+    const splineBtn = document.getElementById('toggle-spline-btn');
+    const cardBtn = document.getElementById('toggle-card-btn');
+    const splineView = document.getElementById('spline-hero-view');
+    const cardView = document.getElementById('card-hero-view');
+
+    if (!splineBtn || !cardBtn || !splineView || !cardView) return;
+
+    // Toggle between 3D Scene and Profile Card
+    splineBtn.addEventListener('click', () => {
+        splineBtn.classList.add('active');
+        cardBtn.classList.remove('active');
+        
+        cardView.classList.remove('active');
+        setTimeout(() => {
+            cardView.style.display = 'none';
+            splineView.style.display = 'block';
+            splineView.classList.add('active');
+        }, 150);
+    });
+
+    cardBtn.addEventListener('click', () => {
+        cardBtn.classList.add('active');
+        splineBtn.classList.remove('active');
+        
+        splineView.classList.remove('active');
+        setTimeout(() => {
+            splineView.style.display = 'none';
+            cardView.style.display = 'block';
+            cardView.classList.add('active');
+        }, 150);
+    });
+
+    // Hide loader fallback once Spline viewer finishes loading
+    const splineViewers = document.querySelectorAll('spline-viewer');
+    splineViewers.forEach(viewer => {
+        viewer.addEventListener('load', () => {
+            const fallback = viewer.parentElement.querySelector('.spline-loader-fallback');
+            if (fallback) {
+                fallback.style.opacity = '0';
+                setTimeout(() => fallback.remove(), 300);
+            }
+        });
+    });
+};
+
+/* ==========================================================================
    INITIALIZATION
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -470,4 +519,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initCertificateCardsClick();
     initDropdowns();
+    initSplineIntegration();
 });

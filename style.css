@@ -344,17 +344,161 @@ ul {
     gap: 16px;
 }
 
-/* 3D Card Visuals */
+/* 3D Visual & Spline Container */
 .hero-visual {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.spline-hero-wrapper {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+.spline-view-toggle {
+    display: inline-flex;
+    background: rgba(18, 18, 24, 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-btn:hover {
+    color: #fff;
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, var(--accent-red), #e60040);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 42, 95, 0.4);
+}
+
+.spline-scene-box {
+    width: 100%;
+    height: 440px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    background: rgba(12, 12, 18, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 42, 95, 0.05);
+    position: relative;
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.spline-scene-box.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.spline-scene-box spline-viewer {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+}
+
+.spline-loader-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.spline-loader-fallback .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255, 42, 95, 0.2);
+    border-top-color: var(--accent-red);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .card-3d-wrapper {
     perspective: 1200px;
     width: 100%;
     max-width: 360px;
+    display: none;
+}
+
+.card-3d-wrapper.active {
+    display: block;
+    animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Section Headers & Accents */
+.section-header-with-3d {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.skills-3d-accent,
+.projects-3d-accent {
+    width: 100%;
+    max-width: 280px;
+    height: 180px;
+    margin: 0 auto -20px auto;
+    position: relative;
+    pointer-events: auto;
+}
+
+.skills-3d-accent spline-viewer,
+.projects-3d-accent spline-viewer {
+    width: 100%;
+    height: 100%;
 }
 
 .card-3d {

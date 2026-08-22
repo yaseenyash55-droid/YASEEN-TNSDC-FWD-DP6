@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Style Sheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Spline 3D Viewer Web Component -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 </head>
 <body>
     <!-- Custom Interactive Cursor -->
@@ -79,15 +81,30 @@
                     </div>
                 </div>
                 <div class="hero-visual" data-reveal="right">
-                    <div class="card-3d-wrapper">
-                        <div class="card-3d" id="hero-card">
-                            <div class="card-glow"></div>
-                            <div class="card-border"></div>
-                            <div class="card-content">
-                                <img src="assets/images/profile-front.jpg" alt="Mohammed Yaseen A Front Portrait" class="profile-image">
-                                <div class="card-info">
-                                    <h3>Mohammed Yaseen A</h3>
-                                    <p>Interactive Experience Designer</p>
+                    <div class="spline-hero-wrapper">
+                        <div class="spline-view-toggle">
+                            <button id="toggle-spline-btn" class="toggle-btn active" data-target="spline"><i class="fa-solid fa-cube"></i> 3D Scene</button>
+                            <button id="toggle-card-btn" class="toggle-btn" data-target="card"><i class="fa-solid fa-id-card"></i> Profile Card</button>
+                        </div>
+                        
+                        <div id="spline-hero-view" class="spline-scene-box active">
+                            <div class="spline-loader-fallback">
+                                <div class="spinner"></div>
+                                <span>Loading 3D Experience...</span>
+                            </div>
+                            <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-mab6X/scene.splinecode" loading-anim-type="spinner"></spline-viewer>
+                        </div>
+
+                        <div id="card-hero-view" class="card-3d-wrapper">
+                            <div class="card-3d" id="hero-card">
+                                <div class="card-glow"></div>
+                                <div class="card-border"></div>
+                                <div class="card-content">
+                                    <img src="assets/images/profile-front.jpg" alt="Mohammed Yaseen A Front Portrait" class="profile-image">
+                                    <div class="card-info">
+                                        <h3>Mohammed Yaseen A</h3>
+                                        <p>Interactive Experience Designer</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,8 +193,15 @@
         <!-- Skills Section -->
         <section id="skills" class="skills-section section-padding">
             <div class="container">
-                <h2 class="section-title text-center" data-reveal="top">Technical <span>Arsenal</span></h2>
-                <p class="section-subtitle text-center" data-reveal="top">The tools and frameworks I use to carve digital realities.</p>
+                <div class="section-header-with-3d">
+                    <div class="header-text-block">
+                        <h2 class="section-title text-center" data-reveal="top">Technical <span>Arsenal</span></h2>
+                        <p class="section-subtitle text-center" data-reveal="top">The tools and frameworks I use to carve digital realities.</p>
+                    </div>
+                    <div class="skills-3d-accent" data-reveal="fade">
+                        <spline-viewer url="https://prod.spline.design/kZDDjO50p9GJn-xp/scene.splinecode" loading-anim-type="spinner"></spline-viewer>
+                    </div>
+                </div>
                 
                 <div class="skills-grid">
                     <div class="skill-card" data-reveal="bottom">
@@ -240,8 +264,15 @@
         <!-- Projects Section -->
         <section id="projects" class="projects-section section-padding">
             <div class="container">
-                <h2 class="section-title text-center" data-reveal="top">Featured <span>Creations</span></h2>
-                <p class="section-subtitle text-center" data-reveal="top">A curation of interactive web environments and premium concepts.</p>
+                <div class="section-header-with-3d">
+                    <div class="header-text-block">
+                        <h2 class="section-title text-center" data-reveal="top">Featured <span>Creations</span></h2>
+                        <p class="section-subtitle text-center" data-reveal="top">A curation of interactive web environments and premium concepts.</p>
+                    </div>
+                    <div class="projects-3d-accent" data-reveal="fade">
+                        <spline-viewer url="https://prod.spline.design/41132B0vW4F1Vn0Z/scene.splinecode" loading-anim-type="spinner"></spline-viewer>
+                    </div>
+                </div>
 
                 <div class="projects-grid">
                     <!-- Comic Cast Channel -->
