@@ -579,10 +579,255 @@ const initSplineIntegration = () => {
 };
 
 /* ==========================================================================
+   3D GLOBE-TO-FACE PARTICLE INTRO REVEAL SYSTEM
+   ========================================================================== */
+const initHeroFaceReveal = () => {
+    const canvas = document.getElementById('hero-reveal-canvas');
+    const settledPhoto = document.getElementById('hero-settled-photo');
+    if (!canvas) return;
+
+    // Capability & Motion Preferences
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth < 600;
+
+    // Setup Three.js Scene for Hero Reveal Box
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    camera.position.z = 4.8;
+
+    const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: true
+    });
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // 1. STARTING STATE: Wireframe 3D Icosahedron / Globe
+    const globeGeom = new THREE.IcosahedronGeometry(1.6, 2);
+    const globeMat = new THREE.MeshBasicMaterial({
+        color: 0xff2a5f,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+    });
+    const globeMesh = new THREE.Mesh(globeGeom, globeMat);
+    scene.add(globeMesh);
+
+    // Glow Outer Ring Sphere
+    const ringGeom = new THREE.IcosahedronGeometry(1.85, 1);
+    const ringMat = new THREE.MeshBasicMaterial({
+        color: 0x00e5ff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.35,
+        blending: THREE.AdditiveBlending
+    });
+    const ringMesh = new THREE.Mesh(ringGeom, ringMat);
+    scene.add(ringMesh);
+
+    // Particle Sampling Setup
+    const sampleWidth = isMobile ? 36 : 56;
+    const sampleHeight = isMobile ? 36 : 56;
+    const particleCount = sampleWidth * sampleHeight;
+
+    const particlesGeom = new THREE.BufferGeometry();
+    const currentPositions = new Float32Array(particleCount * 3);
+    const startPositions = new Float32Array(particleCount * 3);
+    const targetPositions = new Float32Array(particleCount * 3);
+    const particleColors = new Float32Array(particleCount * 3);
+
+    // Distribute start positions on sphere surface
+    for (let i = 0; i < particleCount; i++) {
+        const u = Math.random();
+        const v = Math.random();
+        const theta = u * 2.0 * Math.PI;
+        const phi = Math.acos(2.0 * v - 1.0);
+        const radius = 1.6 + (Math.random() - 0.5) * 0.2;
+
+        const x = radius * Math.sin(phi) * Math.cos(theta);
+        const y = radius * Math.sin(phi) * Math.sin(theta);
+        const z = radius * Math.cos(phi);
+
+        startPositions[i * 3] = x;
+        startPositions[i * 3 + 1] = y;
+        startPositions[i * 3 + 2] = z;
+
+        currentPositions[i * 3] = x;
+        currentPositions[i * 3 + 1] = y;
+        currentPositions[i * 3 + 2] = z;
+
+        // Default initial wireframe neon pink/cyan colors
+        particleColors[i * 3] = 1.0;
+        particleColors[i * 3 + 1] = 0.16;
+        particleColors[i * 3 + 2] = 0.37;
+    }
+
+    // Default target grid positions
+    for (let iy = 0; iy < sampleHeight; iy++) {
+        for (let ix = 0; ix < sampleWidth; ix++) {
+            const idx = iy * sampleWidth + ix;
+            targetPositions[idx * 3] = ((ix / sampleWidth) - 0.5) * 2.4;
+            targetPositions[idx * 3 + 1] = ((0.5 - (iy / sampleHeight))) * 2.4;
+            targetPositions[idx * 3 + 2] = (Math.random() - 0.5) * 0.1;
+        }
+    }
+
+    particlesGeom.setAttribute('position', new THREE.BufferAttribute(currentPositions, 3));
+    particlesGeom.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+    const pMaterial = new THREE.PointsMaterial({
+        size: isMobile ? 0.045 : 0.035,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending
+    });
+
+    const morphParticleSystem = new THREE.Points(particlesGeom, pMaterial);
+    scene.add(morphParticleSystem);
+
+    // 2. Load & Sample profile-front.jpg Pixels
+    let isImageLoaded = false;
+    const targetColors = new Float32Array(particleCount * 3);
+
+    const img = new Image();
+    img.src = 'assets/images/profile-front.jpg';
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+        const sampleCanvas = document.createElement('canvas');
+        sampleCanvas.width = sampleWidth;
+        sampleCanvas.height = sampleHeight;
+        const ctx = sampleCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, sampleWidth, sampleHeight);
+        const imgData = ctx.getImageData(0, 0, sampleWidth, sampleHeight).data;
+
+        for (let iy = 0; iy < sampleHeight; iy++) {
+            for (let ix = 0; ix < sampleWidth; ix++) {
+                const idx = iy * sampleWidth + ix;
+                const pixelIdx = (iy * sampleWidth + ix) * 4;
+
+                const r = imgData[pixelIdx] / 255;
+                const g = imgData[pixelIdx + 1] / 255;
+                const b = imgData[pixelIdx + 2] / 255;
+
+                targetColors[idx * 3] = r;
+                targetColors[idx * 3 + 1] = g;
+                targetColors[idx * 3 + 2] = b;
+            }
+        }
+        isImageLoaded = true;
+    };
+
+    // Animation Controls
+    let animProgress = 0;
+    let isSettled = false;
+    const morphDuration = 2.0; // 2s morph
+    const startTime = performance.now() + 400; // 400ms delay after load
+
+    // Mouse Parallax Track
+    let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+    window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            mouseX = ((e.clientX - rect.left) / rect.width) - 0.5;
+            mouseY = ((e.clientY - rect.top) / rect.height) - 0.5;
+        }
+    });
+
+    // Resize Handler
+    window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    });
+
+    // Main Render Loop
+    const animateReveal = () => {
+        const now = performance.now();
+        const elapsed = (now - startTime) / 1000;
+
+        // Reduced Motion Check
+        if (prefersReducedMotion) {
+            animProgress = 1;
+        } else if (elapsed > 0) {
+            animProgress = Math.min(1, elapsed / morphDuration);
+        }
+
+        // Quintic Easing Curve for smooth particle assembly
+        const easeProgress = animProgress < 0.5 
+            ? 16 * Math.pow(animProgress, 5) 
+            : 1 - Math.pow(-2 * animProgress + 2, 5) / 2;
+
+        // Rotate globe during starting state & early morph
+        if (animProgress < 1) {
+            globeMesh.rotation.y += 0.015;
+            globeMesh.rotation.x += 0.008;
+            ringMesh.rotation.y -= 0.012;
+
+            globeMat.opacity = Math.max(0, 0.8 * (1 - easeProgress * 1.5));
+            ringMat.opacity = Math.max(0, 0.35 * (1 - easeProgress * 1.5));
+            pMaterial.opacity = Math.min(0.95, easeProgress * 1.4);
+        } else {
+            globeMesh.visible = false;
+            ringMesh.visible = false;
+        }
+
+        // Lerp Particles from Sphere to Face Grid
+        const posAttr = particlesGeom.attributes.position;
+        const colAttr = particlesGeom.attributes.color;
+
+        for (let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+            // Interpolate position
+            posAttr.array[i3] = startPositions[i3] + (targetPositions[i3] - startPositions[i3]) * easeProgress;
+            posAttr.array[i3 + 1] = startPositions[i3 + 1] + (targetPositions[i3 + 1] - startPositions[i3 + 1]) * easeProgress;
+            posAttr.array[i3 + 2] = startPositions[i3 + 2] + (targetPositions[i3 + 2] - startPositions[i3 + 2]) * easeProgress;
+
+            // Interpolate color if image loaded
+            if (isImageLoaded) {
+                colAttr.array[i3] = 1.0 + (targetColors[i3] - 1.0) * easeProgress;
+                colAttr.array[i3 + 1] = 0.16 + (targetColors[i3 + 1] - 0.16) * easeProgress;
+                colAttr.array[i3 + 2] = 0.37 + (targetColors[i3 + 2] - 0.37) * easeProgress;
+            }
+        }
+        posAttr.needsUpdate = true;
+        colAttr.needsUpdate = true;
+
+        // Mouse Parallax Lerp
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
+
+        scene.rotation.y = targetX * 0.4;
+        scene.rotation.x = -targetY * 0.4;
+
+        // Settle State Handling
+        if (easeProgress >= 1 && !isSettled) {
+            isSettled = true;
+            if (settledPhoto) {
+                settledPhoto.classList.add('settled');
+            }
+            // Smoothly fade out particle canvas overlay once settled photo is visible
+            setTimeout(() => {
+                canvas.style.opacity = '0';
+            }, 600);
+        }
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animateReveal);
+    };
+
+    animateReveal();
+};
+
+/* ==========================================================================
    INITIALIZATION
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
     initThreeJS();
+    initHeroFaceReveal();
     initCardTilt();
     initSkillCardsHighlight();
     initTypingAnimation();
