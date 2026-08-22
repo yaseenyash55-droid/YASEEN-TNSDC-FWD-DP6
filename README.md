@@ -1,6 +1,6 @@
 # 🚀 Modern 3D Interactive Portfolio — Mohammed Yaseen A
 
-A modern, high-performance **3D Animated Portfolio Website** featuring embedded interactive **Spline 3D Scenes**, **Three.js background constellations**, custom glassmorphism styling, and smooth `IntersectionObserver` scroll-reveal animations.
+A modern, high-performance **3D Animated Portfolio Website** featuring a custom **Three.js 3D Globe-to-Face Particle Morphing Intro Reveal**, embedded interactive **Spline 3D Scenes**, custom glassmorphism styling, and smooth `IntersectionObserver` scroll-reveal animations.
 
 ![Portfolio Preview Banner](assets/images/profile-front.jpg)
 
@@ -8,6 +8,11 @@ A modern, high-performance **3D Animated Portfolio Website** featuring embedded 
 
 ## ✨ Features & Enhancements Added
 
+- 🌌 **3D Globe-to-Face Particle Intro Morphing**:
+  - Starts with an interactive neon 3D wireframe globe (`THREE.IcosahedronGeometry`).
+  - On page load (~400ms delay post-FCP), wireframe vertices dissolve into thousands of 3D WebGL light particles that converge and morph into your face portrait (`assets/images/profile-front.jpg`).
+  - Seamlessly settles onto the portrait with 3D mouse parallax tilt.
+  - Dynamically capped particle counts for 60 FPS performance (3,136 desktop / 1,296 mobile).
 - 🎨 **Spline 3D Integration**:
   - **Hero Section**: Interactive 3D Developer Desk / Laptop scene (`@splinetool/viewer`) with real-time **3D Scene / Profile Card** view mode toggle.
   - **Skills Section**: Floating 3D Cyber Orb scene accent.
@@ -29,9 +34,31 @@ A modern, high-performance **3D Animated Portfolio Website** featuring embedded 
 
 - **HTML5 & Vanilla CSS3**: CSS Variables, Glassmorphism, CSS Grid & Flexbox layouts.
 - **ES6+ JavaScript**: Vanilla DOM manipulation, `IntersectionObserver`, and WebGL detection.
-- **Three.js (r128)**: Rendered on `#bg-canvas` for background particle constellation & wireframe icosahedron.
+- **Three.js (r128)**: Rendered on `#bg-canvas` for background particle constellation, and `#hero-reveal-canvas` for 3D Globe-to-Face particle morphing.
 - **Spline 3D Web Component (`@splinetool/viewer`)**: Dynamic lazy CDN module import (`https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js`).
 - **FontAwesome 6.4.0** & **Google Fonts** (*Inter* & *Outfit*).
+
+---
+
+## 📂 Projects & Credentials Featured
+
+### 📂 Projects
+1. **Nexa Social Platform** (*React, TypeScript, Express, Oracle DB, PostgreSQL*)
+2. **ComicVault Desktop App** (*Electron 33, React 19, SQLite, Prisma ORM*)
+3. **Hero Tracker 3D** (*React 19, Three.js, React-Globe.gl, Socket.io*)
+4. **Farah Origin Mobile & Web** (*Next.js 16, Capacitor 8, Supabase*)
+5. **Dream Doors Interior** (*Next.js 16, React 19, Tailwind CSS v4, Nodemailer*)
+6. **Interactive ATS Resume Generator** (*JavaScript ES6+, HTML5, CSS3, PDF Engine*)
+7. **Comic Cast Channel** (*HTML5, CSS3, JavaScript, YouTube API*)
+8. **Digital Portfolio (DP6)** (*HTML5, CSS3, JavaScript, Three.js, Spline 3D*)
+9. **Content Creator Blog** (*React.js, LocalStorage, Markdown*)
+
+### 🎓 Key Certifications
+- **Oracle AI Database Certified Foundations Associate** (Oracle University • August 18, 2026 • ID: `103419172OCI26DCFA`)
+- **Front End Web Development** (IBM SkillsBuild / Edunet • `PLAN-741582ED6C44`)
+- **Web Development Fundamentals** (IBM SkillsBuild / Credly • `PLAN-8749C02A78EC`)
+- **MongoDB Basics & Vector Search Series** (MongoDB University)
+- **TATA Data Visualisation Simulation** (Tata Group / Forage)
 
 ---
 
