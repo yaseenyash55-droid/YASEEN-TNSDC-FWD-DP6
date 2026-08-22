@@ -457,7 +457,7 @@ const initDropdowns = () => {
 };
 
 /* ==========================================================================
-   SPLINE 3D INTEGRATION & TOGGLE CONTROLLER
+   SPLINE 3D LAZY LOADING, CAPABILITY DETECTION & CONTROLLER
    ========================================================================== */
 const initSplineIntegration = () => {
     const splineBtn = document.getElementById('toggle-spline-btn');
@@ -465,43 +465,105 @@ const initSplineIntegration = () => {
     const splineView = document.getElementById('spline-hero-view');
     const cardView = document.getElementById('card-hero-view');
 
-    if (!splineBtn || !cardBtn || !splineView || !cardView) return;
+    // 1. WebGL & Low Power Device Check
+    const checkWebGLSupport = () => {
+        try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+            return false;
+        }
+    };
 
-    // Toggle between 3D Scene and Profile Card
-    splineBtn.addEventListener('click', () => {
-        splineBtn.classList.add('active');
-        cardBtn.classList.remove('active');
-        
-        cardView.classList.remove('active');
-        setTimeout(() => {
-            cardView.style.display = 'none';
-            splineView.style.display = 'block';
-            splineView.classList.add('active');
-        }, 150);
-    });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isWebGLAvailable = checkWebGLSupport();
+    const isMobileDevice = window.innerWidth < 600;
 
-    cardBtn.addEventListener('click', () => {
-        cardBtn.classList.add('active');
-        splineBtn.classList.remove('active');
-        
-        splineView.classList.remove('active');
-        setTimeout(() => {
+    // Graceful Fallback: If WebGL unavailable or reduced motion requested, show profile card directly
+    if (!isWebGLAvailable || prefersReducedMotion) {
+        if (splineView && cardView) {
             splineView.style.display = 'none';
             cardView.style.display = 'block';
             cardView.classList.add('active');
-        }, 150);
-    });
+            if (splineBtn && cardBtn) {
+                cardBtn.classList.add('active');
+                splineBtn.classList.remove('active');
+            }
+        }
+    }
 
-    // Hide loader fallback once Spline viewer finishes loading
+    // 2. Dynamic Lazy Loading Script Injection after initial page paint
+    const loadSplineScript = () => {
+        if (document.querySelector('script[src*="spline-viewer"]')) return;
+        
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
+        script.async = true;
+        document.head.appendChild(script);
+    };
+
+    // Delay loading script until main thread is clear (after load)
+    if (document.readyState === 'complete') {
+        setTimeout(loadSplineScript, 200);
+    } else {
+        window.addEventListener('load', () => setTimeout(loadSplineScript, 200));
+    }
+
+    // 3. View Toggle Interaction
+    if (splineBtn && cardBtn && splineView && cardView) {
+        splineBtn.addEventListener('click', () => {
+            splineBtn.classList.add('active');
+            cardBtn.classList.remove('active');
+            
+            cardView.classList.remove('active');
+            setTimeout(() => {
+                cardView.style.display = 'none';
+                splineView.style.display = 'block';
+                splineView.classList.add('active');
+            }, 150);
+        });
+
+        cardBtn.addEventListener('click', () => {
+            cardBtn.classList.add('active');
+            splineBtn.classList.remove('active');
+            
+            splineView.classList.remove('active');
+            setTimeout(() => {
+                splineView.style.display = 'none';
+                cardView.style.display = 'block';
+                cardView.classList.add('active');
+            }, 150);
+        });
+    }
+
+    // 4. Skeleton Loader & Timeout Fallback Handling
     const splineViewers = document.querySelectorAll('spline-viewer');
     splineViewers.forEach(viewer => {
-        viewer.addEventListener('load', () => {
+        let isLoaded = false;
+
+        const hideFallback = () => {
+            if (isLoaded) return;
+            isLoaded = true;
             const fallback = viewer.parentElement.querySelector('.spline-loader-fallback');
             if (fallback) {
                 fallback.style.opacity = '0';
-                setTimeout(() => fallback.remove(), 300);
+                fallback.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => fallback.remove(), 400);
             }
-        });
+        };
+
+        viewer.addEventListener('load', hideFallback);
+
+        // Fallback Timeout: If 3D scene takes over 7s to load on slow connections, switch to static card gracefully
+        setTimeout(() => {
+            if (!isLoaded) {
+                hideFallback();
+                if (viewer.closest('#spline-hero-view') && cardBtn) {
+                    cardBtn.click(); // Switch to profile card fallback
+                }
+            }
+        }, 7000);
     });
 };
 
