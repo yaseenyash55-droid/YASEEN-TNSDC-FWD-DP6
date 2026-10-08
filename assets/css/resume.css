@@ -19,7 +19,7 @@ body {
   font-size: 9.5px; /* Extremely compact font size to fit everything on 1 page */
   background: #cbd5e1; /* Gray background for web view */
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 /* A4 Page dimensions for Web preview */
@@ -302,6 +302,23 @@ header {
   color: var(--primary-color);
 }
 
+.edu-score {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.languages-tags {
+  margin-bottom: 10px;
+}
+
+.language-tag {
+  border-left: 2px solid var(--secondary-color);
+}
+
+.strengths-container-spaced {
+  margin-top: 10px;
+}
+
 /* Controls */
 .controls {
   text-align: center;
@@ -318,6 +335,10 @@ header {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.controls button + button {
+  margin-left: 10px;
 }
 
 /* Print Rules */
@@ -338,7 +359,7 @@ header {
   /* Force exact colors */
   * {
     -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
+    print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 }

@@ -60,17 +60,17 @@
                     <p class="hero-desc">
                         A passionate Creative Developer focused on crafting immersive 3D visual experiences on the web. I bridge the gap between high-end design and solid frontend engineering.
                     </p>
-                    <div class="hero-ctas" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                    <div class="hero-ctas hero-ctas-row">
                         <a href="#projects" class="btn btn-primary">Explore Work</a>
                         <div class="cta-dropdown">
-                            <a href="javascript:void(0)" class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-user-tie"></i> Resume (Photo) <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:2px; opacity:0.8;"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-user-tie"></i> Resume (Photo) <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
                             <div class="dropdown-menu">
                                 <a href="resume-photo.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-eye"></i> View HTML</a>
                                 <a href="resume-photo.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-print"></i> Print to PDF</a>
                             </div>
                         </div>
                         <div class="cta-dropdown">
-                            <a href="javascript:void(0)" class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-file-invoice"></i> Resume (Plain) <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:2px; opacity:0.8;"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-secondary dropdown-trigger"><i class="fa-solid fa-file-invoice"></i> Resume (Plain) <i class="fa-solid fa-chevron-down dropdown-chevron"></i></a>
                             <div class="dropdown-menu">
                                 <a href="resume-plain.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-eye"></i> View HTML</a>
                                 <a href="resume-plain.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-print"></i> Print to PDF</a>
@@ -162,27 +162,27 @@
                                 <span class="stat-label">Performance</span>
                             </div>
                         </div>
-                        <div class="resumes-section-wrapper" style="margin-top: 30px; display: flex; flex-direction: column; gap: 14px;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--text-primary);"><i class="fa-solid fa-file-contract" style="color: var(--accent-red);"></i> Professional Resumes</h4>
+                        <div class="resumes-section-wrapper">
+                            <h4 class="resumes-heading"><i class="fa-solid fa-file-contract"></i> Professional Resumes</h4>
                             
-                            <div class="resumes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                            <div class="resumes-grid">
                                 <!-- Resume With Photo -->
-                                <div class="resume-subcard" style="padding: 20px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 8px; border-left: 3px solid var(--accent-red);">
-                                    <h5 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--text-primary); margin: 0;"><i class="fa-solid fa-user-tie" style="color: var(--accent-red);"></i> CV (With Photo)</h5>
-                                    <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); margin: 0;">Designed for creative agency review and standard portfolio profiling.</p>
-                                    <div style="display: flex; gap: 8px; margin-top: auto; padding-top: 10px;">
-                                        <a href="resume-photo.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> View HTML</a>
-                                        <a href="resume-photo.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; background: var(--accent-red); color: #fff; text-decoration: none; border-radius: 6px; border: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; flex: 1; justify-content: center;"><i class="fa-solid fa-print"></i> Print to PDF</a>
+                                <div class="resume-subcard with-photo">
+                                    <h5 class="resume-subcard-title"><i class="fa-solid fa-user-tie"></i> CV (With Photo)</h5>
+                                    <p class="resume-subcard-desc">Designed for creative agency review and standard portfolio profiling.</p>
+                                    <div class="resume-actions-row">
+                                        <a href="resume-photo.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary resume-action-btn secondary"><i class="fa-solid fa-eye"></i> View HTML</a>
+                                        <a href="resume-photo.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary resume-action-btn primary"><i class="fa-solid fa-print"></i> Print to PDF</a>
                                     </div>
                                 </div>
 
                                 <!-- Resume Without Photo -->
-                                <div class="resume-subcard" style="padding: 20px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 8px; border-left: 3px solid var(--text-secondary);">
-                                    <h5 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--text-primary); margin: 0;"><i class="fa-solid fa-file-invoice" style="color: var(--text-secondary);"></i> CV (No Photo)</h5>
-                                    <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); margin: 0;">Designed for ATS scan compatibility and anonymous filtering systems.</p>
-                                    <div style="display: flex; gap: 8px; margin-top: auto; padding-top: 10px;">
-                                        <a href="resume-plain.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> View HTML</a>
-                                        <a href="resume-plain.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.8rem; height: auto; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; flex: 1; justify-content: center;"><i class="fa-solid fa-print"></i> Print to PDF</a>
+                                <div class="resume-subcard no-photo">
+                                    <h5 class="resume-subcard-title"><i class="fa-solid fa-file-invoice"></i> CV (No Photo)</h5>
+                                    <p class="resume-subcard-desc">Designed for ATS scan compatibility and anonymous filtering systems.</p>
+                                    <div class="resume-actions-row">
+                                        <a href="resume-plain.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary resume-action-btn secondary"><i class="fa-solid fa-eye"></i> View HTML</a>
+                                        <a href="resume-plain.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary resume-action-btn primary"><i class="fa-solid fa-print"></i> Print to PDF</a>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                         </div>
                         <h3>Frontend Logic</h3>
                         <p>Javascript (ES6+), React.js, Next.js, and TypeScript for building reactive, scalable single-page architectures.</p>
-                        <div class="skill-level"><span style="width: 90%;"></span></div>
+                        <div class="skill-level skill-level-90"><span></span></div>
                     </div>
                     
                     <div class="skill-card" data-reveal="bottom" data-delay="100">
@@ -221,7 +221,7 @@
                         </div>
                         <h3>3D & Graphics</h3>
                         <p>Three.js, WebGL, custom GLSL shaders, Blender, and responsive animation systems for interactive elements.</p>
-                        <div class="skill-level"><span style="width: 85%;"></span></div>
+                        <div class="skill-level skill-level-85"><span></span></div>
                     </div>
 
                     <div class="skill-card" data-reveal="bottom" data-delay="200">
@@ -230,7 +230,7 @@
                         </div>
                         <h3>Creative Styling</h3>
                         <p>Advanced Vanilla CSS3, Grid, Flexbox, layout systems, glassmorphic UI cards, transitions, and keyframe animations.</p>
-                        <div class="skill-level"><span style="width: 95%;"></span></div>
+                        <div class="skill-level skill-level-95"><span></span></div>
                     </div>
 
                     <div class="skill-card" data-reveal="bottom" data-delay="300">
@@ -239,7 +239,7 @@
                         </div>
                         <h3>User Experience</h3>
                         <p>UI design, information hierarchy, wireframing, motion-design integration, and cross-browser testing.</p>
-                        <div class="skill-level"><span style="width: 80%;"></span></div>
+                        <div class="skill-level skill-level-80"><span></span></div>
                     </div>
 
                     <div class="skill-card" data-reveal="bottom" data-delay="100">
@@ -248,7 +248,7 @@
                         </div>
                         <h3>Software Dev</h3>
                         <p>Core programming in C, C++, and Java for robust backend logic, algorithms, object-oriented concepts, and problem solving.</p>
-                        <div class="skill-level"><span style="width: 85%;"></span></div>
+                        <div class="skill-level skill-level-85"><span></span></div>
                     </div>
 
                     <div class="skill-card" data-reveal="bottom" data-delay="200">
@@ -257,7 +257,7 @@
                         </div>
                         <h3>Media Production</h3>
                         <p>Expert video editing, creative meme design, and digital content creation for social platforms and YouTube channels.</p>
-                        <div class="skill-level"><span style="width: 90%;"></span></div>
+                        <div class="skill-level skill-level-90"><span></span></div>
                     </div>
                 </div>
             </div>
@@ -283,9 +283,9 @@
                             <div class="project-overlay">
                                 <h3>Nexa Social Platform</h3>
                                 <p>Enterprise full-stack social platform featuring Oracle DB & PostgreSQL backend, TypeScript, Express API, email/Android OTP authentication, and reactive social feeds.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-layer-group"></i> Full Stack</span>
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,255,255,0.05); color:var(--text-secondary); padding:4px 8px; border-radius:4px;"><i class="fa-solid fa-database"></i> Oracle DB</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-layer-group"></i> Full Stack</span>
+                                    <span class="project-tag tag-neutral"><i class="fa-solid fa-database"></i> Oracle DB</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-1">
@@ -304,8 +304,8 @@
                             <div class="project-overlay">
                                 <h3>ComicVault Desktop</h3>
                                 <p>Local-first comic library manager & reader built with Electron 33, React 19, SQLite, Prisma ORM, command palette search, and AES-256 encrypted backups.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-desktop"></i> Electron App</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-desktop"></i> Electron App</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-2">
@@ -324,8 +324,8 @@
                             <div class="project-overlay">
                                 <h3>Hero Tracker 3D</h3>
                                 <p>Real-time 3D telemetry tracking dashboard with dynamic 3D Earth globe visualization, live spatial maps via Leaflet, Socket.io real-time streaming, and Three.js.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-globe"></i> 3D Globe</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-globe"></i> 3D Globe</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-3">
@@ -340,8 +340,8 @@
                             <div class="project-overlay">
                                 <h3>Farah Origin Mobile</h3>
                                 <p>Cross-platform mobile & web application built with Next.js 16, Capacitor 8, Supabase backend, Framer Motion micro-interactions, and native Android APK export pipeline.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-mobile-screen"></i> Android & Web</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-mobile-screen"></i> Android & Web</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-1">
@@ -360,8 +360,8 @@
                             <div class="project-overlay">
                                 <h3>Dream Doors Interior</h3>
                                 <p>Modern interior design showcase platform built with Next.js 16, React 19, Tailwind CSS v4, Nodemailer quote automation, and dual database integration.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-paint-roller"></i> Next.js 16</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-paint-roller"></i> Next.js 16</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-2">
@@ -380,7 +380,7 @@
                             <div class="project-overlay">
                                 <h3>Comic Cast Channel</h3>
                                 <p>Created and managed YouTube channel 'Comic Cast' with original comedic video content, digital branding, and an interactive landing website hosted on Surge.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
+                                <div class="project-links-row">
                                     <a href="http://comiccast-ymy.surge.sh" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-globe"></i> Live Site</a>
                                     <a href="https://www.youtube.com/channel/UCLfpk3OuJy7dhQFA0pVSW_A/videos" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
                                 </div>
@@ -419,7 +419,7 @@
                             <div class="project-overlay">
                                 <h3>Content Creator Blog</h3>
                                 <p>A secure, responsive platform for editing and publishing blogs, posts, drafts, and categorizations with Markdown support.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
+                                <div class="project-links-row">
                                     <a href="https://yaseenyash55-droid.github.io/Content-Creator-Blog/" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-globe"></i> Live Site</a>
                                     <a href="https://github.com/yaseenyash55-droid/Content-Creator-Blog" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-github"></i> Github Repo</a>
                                 </div>
@@ -436,8 +436,8 @@
                             <div class="project-overlay">
                                 <h3>ATS Resume Generator</h3>
                                 <p>Interactive ATS-compliant resume builder application with dual photo/plain template toggle, real-time live preview, and browser PDF printing engine.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
-                                    <span class="project-tag" style="font-size:0.75rem; background:rgba(255,42,95,0.15); color:var(--accent-red); padding:4px 8px; border-radius:4px; border:1px solid rgba(255,42,95,0.3);"><i class="fa-solid fa-file-pdf"></i> Resume Engine</span>
+                                <div class="project-links-row">
+                                    <span class="project-tag tag-accent"><i class="fa-solid fa-file-pdf"></i> Resume Engine</span>
                                 </div>
                             </div>
                             <div class="project-placeholder p-1">
@@ -456,7 +456,7 @@
                             <div class="project-overlay">
                                 <h3>Farah Origin</h3>
                                 <p>A creative custom content-staging application optimized for responsive visual layouts and web media displays.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
+                                <div class="project-links-row">
                                     <a href="https://farah-origin.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-globe"></i> Live Site</a>
                                     <a href="https://github.com/yaseenyash55-droid/farah-origin" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-github"></i> Github Repo</a>
                                 </div>
@@ -491,7 +491,7 @@
                             <div class="project-overlay">
                                 <h3>Dream Doors</h3>
                                 <p>A premium interior design showroom website built for a Coimbatore remodeling service, featuring an interactive budget estimator and localized language options.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
+                                <div class="project-links-row">
                                     <a href="https://dream-doors-rho.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-globe"></i> Live Site</a>
                                     <a href="https://github.com/yaseenyash55-droid/Dream-Doors" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-github"></i> Github Repo</a>
                                 </div>
@@ -512,7 +512,7 @@
                             <div class="project-overlay">
                                 <h3>Marvel Cinematic Multiverse</h3>
                                 <p>An Awwwards-style, scroll-driven cinematic web experience featuring 3D visuals, smooth animations, and Marvel lore. Built with Next.js, React Three Fiber, and GSAP.</p>
-                                <div class="project-links-row" style="display: flex; gap: 10px; margin-top: auto;">
+                                <div class="project-links-row">
                                     <a href="https://marvel-cinematic-multiverse.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-globe"></i> Live Site</a>
                                     <a href="https://github.com/yaseenyash55-droid/Marvel-Cinematic-Multiverse" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-github"></i> Github Repo</a>
                                 </div>
@@ -586,7 +586,7 @@
                             <p class="cert-issuer">IBM SkillsBuild</p>
                             <div class="cert-meta">
                                 <span class="cert-id"><i class="fa-solid fa-hashtag"></i> ID: PLAN-8749C02A78EC</span>
-                                <div class="cert-links-row" style="display: flex; gap: 8px;">
+                                <div class="cert-links-row">
                                     <a href="assets/certificates/web-dev-fundamentals.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn"><i class="fa-solid fa-file-pdf"></i> PDF</a>
                                     <a href="https://www.credly.com/badges/ae5699c7-1ec0-42ab-ae7b-bdd0beb41707" target="_blank" rel="noopener noreferrer" class="cert-btn"><i class="fa-solid fa-shield-halved"></i> Credly</a>
                                 </div>
@@ -676,7 +676,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-brands fa-react" style="color: #61dafb;"></i>
+                                    <i class="fa-brands fa-react color-react"></i>
                                 </div>
                                 <span class="cert-date">Jun 2026</span>
                             </div>
@@ -694,7 +694,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-leaf color-green"></i>
                                 </div>
                                 <span class="cert-date">Jul 2026</span>
                             </div>
@@ -713,7 +713,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-leaf color-green"></i>
                                 </div>
                                 <span class="cert-date">Jul 2026</span>
                             </div>
@@ -732,7 +732,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-leaf color-green"></i>
                                 </div>
                                 <span class="cert-date">Jul 2026</span>
                             </div>
@@ -751,7 +751,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-leaf color-green"></i>
                                 </div>
                                 <span class="cert-date">Jul 2026</span>
                             </div>
@@ -770,7 +770,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-leaf color-green"></i>
                                 </div>
                                 <span class="cert-date">Jul 2026</span>
                             </div>
@@ -827,7 +827,7 @@
                         <div class="cert-content">
                             <div class="cert-header">
                                 <div class="cert-badge">
-                                    <i class="fa-solid fa-seedling" style="color: #4CAF50;"></i>
+                                    <i class="fa-solid fa-seedling color-green"></i>
                                 </div>
                                 <span class="cert-date">Sep 2026</span>
                             </div>
@@ -870,9 +870,9 @@
                         </ul>
 
                         <div class="social-links">
-                            <a href="https://github.com/yaseenyash55-droid" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/mohammed-yaseen-60979b344" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="https://www.instagram.com/_leon.yash_?igsh=eXhsYmxyczR5ems4" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://github.com/yaseenyash55-droid" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i><span class="sr-only">GitHub</span></a>
+                            <a href="https://www.linkedin.com/in/mohammed-yaseen-60979b344" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i><span class="sr-only">LinkedIn</span></a>
+                            <a href="https://www.instagram.com/_leon.yash_?igsh=eXhsYmxyczR5ems4" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i><span class="sr-only">Instagram</span></a>
                         </div>
                     </div>
 
